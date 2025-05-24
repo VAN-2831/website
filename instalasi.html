@@ -10,9 +10,11 @@
   <aside class="w-64 bg-gray-800 text-white p-6 space-y-4">
     <h1 class="text-xl font-bold">Menu</h1>
     <nav class="space-y-2">
-      <a href="../index.html" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a>
+      <a href="index.html" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a>
       <a href="instalasi.html" class="block bg-gray-700 p-2 rounded">Instalasi Debian</a>
       <a href="web-server.html" class="block hover:bg-gray-700 p-2 rounded">Web Server</a>
+      <a href="dhcp-server.html" class="block hover:bg-gray-700 p-2 rounded">DHCP Server</a>
+      <a href="ftp-server.html" class="block hover:bg-gray-700 p-2 rounded">FTP Server</a>
     </nav>
   </aside>
 
@@ -50,72 +52,72 @@
     <h2 class="text-xl font-semibold">2. Proses Pembuatan Mesin Virtual</h2>
 
     <h3 class="font-semibold">2.1 OPEN VIRTUAL BOX</h3>
-    <img src="../img/step2.1.png" class="my-2 rounded shadow" alt="Open VirtualBox">
+    <img src="./img_debian/step2.1.png" class="my-2 rounded shadow" alt="Open VirtualBox">
 
     <h3 class="font-semibold">2.2 Klik Bagian New untuk Menambahkan VM</h3>
-    <img src="../img/step2.2.png" class="my-2 rounded shadow" alt="Klik New">
+    <img src="./img_debian/step2.2.png" class="my-2 rounded shadow" alt="Klik New">
 
     <h3 class="font-semibold">2.3 SETUP VM</h3>
     <p>Masukkan nama VM, arahkan ISO image ke file Debian, dan centang <strong>Skip Unattended Installation</strong>.</p>
-    <img src="../img/step2.3.png" class="my-2 rounded shadow" alt="Setup VM">
+    <img src="./img_debian/step2.3.png" class="my-2 rounded shadow" alt="Setup VM">
 
     <h3 class="font-semibold">2.4 SETUP STORAGE</h3>
     <p>Di tab hard disk, atur ukuran penyimpanan minimal 20GB.</p>
-    <img src="../img/step2.4.png" class="my-2 rounded shadow" alt="Setup Storage">
+    <img src="./img_debian/step2.4.png" class="my-2 rounded shadow" alt="Setup Storage">
 
     <h3 class="font-semibold">2.5 FINISH SETUP</h3>
     <p>Klik <strong>Finish</strong> lalu tekan <strong>Start</strong>.</p>
-    <img src="../img/step2.5.png" class="my-2 rounded shadow" alt="Finish Setup">
+    <img src="./img_debian/step2.5.png" class="my-2 rounded shadow" alt="Finish Setup">
 
     <h2 class="text-xl font-semibold">3. Proses Instalasi Debian 9 CLI</h2>
 
     <h3 class="font-semibold">3.1 Install Debian</h3>
     <p>Pilih <strong>Install</strong> (bukan Graphical Install).</p>
-    <img src="../img/step3.1.png" class="my-2 rounded shadow" alt="Install Debian">
+    <img src="./img_debian/step3.1.png" class="my-2 rounded shadow" alt="Install Debian">
 
     <h3 class="font-semibold">3.2 Pilih Bahasa</h3>
     <p>Gunakan <strong>English</strong> agar lebih umum.</p>
-    <img src="../img/step3.2.png" class="my-2 rounded shadow" alt="Pilih Bahasa">
+    <img src="./img_debian/step3.2.png" class="my-2 rounded shadow" alt="Pilih Bahasa">
 
     <h3 class="font-semibold">3.3 Pilih Zona Waktu</h3>
     <p>Pilih zona waktu seperti <strong>Other > Asia > Hong Kong</strong>.</p>
-    <img src="../img/step3.3.png" class="my-2 rounded shadow" alt="Pilih Zona Waktu">
+    <img src="./img_debian/step3.3.png" class="my-2 rounded shadow" alt="Pilih Zona Waktu">
 
     <h3 class="font-semibold">3.4 Pilih Keymap</h3>
     <p>Gunakan <strong>American English</strong> (layout QWERTY standar).</p>
-    <img src="../img/step3.4.png" class="my-2 rounded shadow" alt="Pilih Keymap">
+    <img src="./img_debian/step3.4.png" class="my-2 rounded shadow" alt="Pilih Keymap">
 
     <h3 class="font-semibold">3.5 Hostname</h3>
     <p>Masukkan nama untuk server, misalnya: <code>YANDRA-SERVER</code>. Gunakan <code>-</code> untuk spasi.</p>
-    <img src="../img/step3.5.png" class="my-2 rounded shadow" alt="Hostname">
+    <img src="./img_debian/step3.5.png" class="my-2 rounded shadow" alt="Hostname">
 
     <h3 class="font-semibold">3.6 Domain Name</h3>
     <p>Jika tidak digunakan untuk web hosting, kosongkan bagian ini.</p>
-    <img src="../img/step3.6.png" class="my-2 rounded shadow" alt="Domain Name">
+    <img src="./img_debian/step3.6.png" class="my-2 rounded shadow" alt="Domain Name">
 
     <h3 class="font-semibold">3.7 Password Root</h3>
     <p>Masukkan dan konfirmasi password root.</p>
-    <img src="../img/step3.7.png" class="my-2 rounded shadow" alt="Password Root">
+    <img src="./img_debian/step3.7.png" class="my-2 rounded shadow" alt="Password Root">
 
     <h3 class="font-semibold">3.8 Akun Pengguna</h3>
     <p>Buat akun untuk masuk ke sistem selain root.</p>
-    <img src="../img/step3.8.png" class="my-2 rounded shadow" alt="Akun Pengguna">
+    <img src="./img_debian/step3.8.png" class="my-2 rounded shadow" alt="Akun Pengguna">
 
     <h3 class="font-semibold">3.9 Partisi Disk</h3>
     <p>Pilih: <code>Guided - use entire disk > Pilih disk > Recommended for new users > Finish > Yes</code></p>
-    <img src="../img/step3.9.png" class="my-2 rounded shadow" alt="Partisi Disk">
+    <img src="./img_debian/step3.9.png" class="my-2 rounded shadow" alt="Partisi Disk">
 
     <h3 class="font-semibold">3.10 Configure the Package Manager</h3>
     <p>Pilih <strong>No</strong> jika tidak punya DVD ISO tambahan.</p>
-    <img src="../img/step3.10.png" class="my-2 rounded shadow" alt="Package Manager">
+    <img src="./img_debian/step3.10.png" class="my-2 rounded shadow" alt="Package Manager">
 
     <h3 class="font-semibold">3.11 Network Mirror</h3>
     <p>Opsional. Pilih <strong>No</strong>.</p>
-    <img src="../img/step3.11.png" class="my-2 rounded shadow" alt="Network Mirror">
+    <img src="./img_debian/step3.11.png" class="my-2 rounded shadow" alt="Network Mirror">
 
     <h3 class="font-semibold">3.12 Survei</h3>
     <p>Opsional. Pilih <strong>No</strong>.</p>
-    <img src="../img/step3.12.png" class="my-2 rounded shadow" alt="Survei">
+    <img src="./img_debian/step3.12.png" class="my-2 rounded shadow" alt="Survei">
 
     <h3 class="font-semibold">3.13 Pemilihan Komponen</h3>
     <ul class="list-disc list-inside">
@@ -131,19 +133,19 @@
       <li><strong>SSH Server</strong>: Untuk akses remote lewat terminal.</li>
       <li><strong>Standard System Utilities</strong>: Alat penting sistem.</li>
     </ul>
-    <img src="../img/step3.13.png" class="my-2 rounded shadow" alt="Software Selection">
+    <img src="./img_debian/step3.13.png" class="my-2 rounded shadow" alt="Software Selection">
 
     <h3 class="font-semibold">3.14 GRUB Bootloader</h3>
     <p>Pilih <strong>Yes</strong> agar sistem bisa boot menggunakan UEFI.</p>
-    <img src="../img/step3.14.png" class="my-2 rounded shadow" alt="GRUB Bootloader">
+    <img src="./img_debian/step3.14.png" class="my-2 rounded shadow" alt="GRUB Bootloader">
 
     <h3 class="font-semibold">4 FINISH</h3>
     <p>Login menggunakan user dan password yang tadi telah di buat</p>
-    <img src="../img/step3.14.png" class="my-2 rounded shadow" alt="GRUB Bootloader">
+    <img src="./img_debian/step3.14.png" class="my-2 rounded shadow" alt="GRUB Bootloader">
   </div>
 </section>
 
   </main>
 </body>
-<script src="../menubar.js"></script>
+<script src="./menubar.js"></script>
 </html>

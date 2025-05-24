@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Instalasi DHCP Server</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</head>
+<body class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-800 text-white p-6 space-y-4">
+    <h1 class="text-xl font-bold">Menu</h1>
+    <nav class="space-y-2">
+      <a href="index.html" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a>
+      <a href="instalasi.html" class="block hover:bg-gray-700 p-2 rounded">Instalasi Debian</a>
+      <a href="web-server.html" class="block hover:bg-gray-700 p-2 rounded">Web Server</a>
+      <a href="dhcp-server.html" class="block bg-gray-700 p-2 rounded">DHCP Server</a>
+      <a href="ftp-server.html" class="block hover:bg-gray-700 p-2 rounded">FTP Server</a>
+    </nav>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main class="flex-grow p-6 bg-gray-100">
+    <section class="flex-grow px-6 border border-gray-300 rounded-md shadow-sm bg-white">
+      <div class="text-center py-6">
+        <h1 class="text-3xl font-bold">INSTALASI DHCP SERVER PADA VIRTUAL BOX</h1>
+      </div>
+
+      <div class="px-4 pb-6 text-sm space-y-6">
+        <h2 class="text-xl font-semibold">1. UPDATE & UPGRADE Package Server</h2>
+        <img src="./img_dhcp/dhcp1.png" class="my-2 rounded shadow" alt="Update Upgrade">
+
+        <h3 class="font-semibold">1.1 Install package DHCP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+          <pre id="cmd1">apt install isc-dhcp-server</pre>
+          <button onclick="copyToClipboard('cmd1')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_dhcp/dhcp1.png" class="my-2 rounded shadow" alt="Install DHCP">
+
+        <h3 class="font-semibold">1.2 Cek adapter server</h3>
+        <p>Contoh adapter: <code>ens33</code></p>
+        <img src="./img_dhcp/dhcp1.2-4.png" class="my-2 rounded shadow" alt="Cek Adapter">
+
+        <h3 class="font-semibold">1.3 Buat IP untuk server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd2">nano /etc/network/interfaces</pre>
+          <button onclick="copyToClipboard('cmd2')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Isi file seperti berikut (contoh menggunakan IP kelas C 192.168.1.1):</p>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd3">auto ens33
+iface ens33 inet static
+  address 192.168.1.1/24</pre>
+          <button onclick="copyToClipboard('cmd3')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_dhcp/dhcp1.3.png" class="my-2 rounded shadow" alt="Set IP">
+
+        <h3 class="font-semibold">1.4 Cek apakah IP sudah berubah</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+          <pre id="cmd4">systemctl restart networking
+ip a</pre>
+          <button onclick="copyToClipboard('cmd4')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_dhcp/dhcp1.2-4.png" class="my-2 rounded shadow" alt="Set IP">
+
+        <h3 class="font-semibold">1.5 Konfigurasi DHCP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd5">nano /etc/dhcp/dhcpd.conf</pre>
+          <button onclick="copyToClipboard('cmd5')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <div class="bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre>{
+  subnet 192.168.1.0 netmask 255.255.255.0 {
+    range 192.168.1.10 192.168.1.20;
+    option routers 192.168.1.1;
+    option subnet-mask 255.255.255.0;
+    option domain-name-servers 8.8.8.8, 8.8.4.4;
+  }
+}</pre>
+        </div>
+        <img src="./img_dhcp/dhcp1.5.png" class="my-2 rounded shadow" alt="Konfigurasi DHCP">
+
+        <h3 class="font-semibold">1.6 Konfigurasi adapter DHCP</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd6">nano /etc/default/isc-dhcp-server</pre>
+          <button onclick="copyToClipboard('cmd6')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <div class="bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre>INTERFACESv4="ens33"
+INTERFACESv6=""</pre>
+        </div>
+        <img src="./img_dhcp/dhcp1.6.png" class="my-2 rounded shadow" alt="Konfig Adapter">
+
+        <h3 class="font-semibold">1.7 Restart DHCP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd7">systemctl restart isc-dhcp-server
+systemctl status isc-dhcp-server</pre>
+          <button onclick="copyToClipboard('cmd7')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Status layanan harus <strong>RUNNING</strong> jika berhasil.</p>
+        <img src="./img_dhcp/dhcp1.7.png" class="my-2 rounded shadow" alt="Status DHCP">
+
+        <h3 class="font-semibold">1.8 Ubah adapter VM</h3>
+        <p>Ubah adapter menjadi <strong>Host Only Adapter</strong></p>
+        <img src="./img_dhcp/dhcp1.8.png" class="my-2 rounded shadow" alt="Host Only">
+
+        <h3 class="font-semibold">1.9 Pengecekan IP di Client</h3>
+        <p>Gunakan Command Prompt:</p>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd8">ipconfig /release
+ipconfig /renew</pre>
+          <button onclick="copyToClipboard('cmd8')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Jika mendapat IP seperti <code>192.168.1.10</code>, maka konfigurasi DHCP berhasil.</p>
+        <img src="./img_dhcp/dhcp1.9.png" class="my-2 rounded shadow" alt="IP Config">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

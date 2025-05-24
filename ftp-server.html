@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Instalasi FTP Server</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</head>
+<body class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-800 text-white p-6 space-y-4">
+    <h1 class="text-xl font-bold">Menu</h1>
+    <nav class="space-y-2">
+      <a href="index.html" class="block hover:bg-gray-700 p-2 rounded">Dashboard</a>
+      <a href="instalasi.html" class="block hover:bg-gray-700 p-2 rounded">Instalasi Debian</a>
+      <a href="web-server.html" class="block hover:bg-gray-700 p-2 rounded">Web Server</a>
+      <a href="dhcp-server.html" class="block hover:bg-gray-700 p-2 rounded">DHCP Server</a>
+      <a href="ftp-server.html" class="block bg-gray-700 p-2 rounded">FTP Server</a>
+    </nav>
+  </aside>
+
+  <!-- Konten Utama -->
+  <main class="flex-grow p-6 bg-gray-100">
+    <section class="flex-grow px-6 border border-gray-300 rounded-md shadow-sm bg-white">
+      <div class="text-center py-6">
+        <h1 class="text-3xl font-bold">INSTALASI FTP SERVER PADA VIRTUAL BOX</h1>
+      </div>
+
+      <div class="px-4 pb-6 text-sm space-y-6">
+        <h2 class="text-xl font-semibold">1. UPDATE & UPGRADE Package Server</h2>
+        <img src="./img_dhcp/dhcp1.png" class="my-2 rounded shadow" alt="Update Upgrade">
+
+        <h3 class="font-semibold">1.1 Install package FTP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+          <pre id="cmd1">apt install vsftpd</pre>
+          <button onclick="copyToClipboard('cmd1')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_ftp/ftp1.1.png" class="my-2 rounded shadow" alt="Install vsftpd">
+
+        <h3 class="font-semibold">1.2 Konfigurasi FTP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+          <pre id="cmd2">nano /etc/vsftpd.conf</pre>
+          <button onclick="copyToClipboard('cmd2')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Ubah atau aktifkan konfigurasi berikut:</p>
+        <div class="bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre>anonymous_enable=YES
+anon_root=/home/ftp
+write_enable=YES
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES</pre>
+        </div>
+        <p>Pastikan untuk menghapus tanda <code>#</code> agar opsi aktif.</p>
+        <img src="./img_ftp/ftp1.2.png" class="my-2 rounded shadow" alt="Konfigurasi vsftpd">
+
+        <h3 class="font-semibold">1.3 Restart FTP server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd3">systemctl restart vsftpd
+systemctl status vsftpd</pre>
+          <button onclick="copyToClipboard('cmd3')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Status harus <strong>RUNNING</strong> jika berhasil.</p>
+        <img src="./img_ftp/ftp1.3.png" class="my-2 rounded shadow" alt="Status vsftpd">
+
+        <h3 class="font-semibold">1.4 Buat folder untuk berbagi file</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd4">mkdir -p /home/ftp/tempat_berbagi
+chmod 777 /home/ftp/tempat_berbagi
+chown ftp:ftp /home/ftp/tempat_berbagi</pre>
+          <button onclick="copyToClipboard('cmd4')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_ftp/ftp1.4.png" class="my-2 rounded shadow" alt="Folder FTP">
+
+        <h3 class="font-semibold">1.5 Coba akses FTP Server</h3>
+        <p>Buka File Manager dan masukkan alamat:</p>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd5">ftp://192.168.1.1</pre>
+          <button onclick="copyToClipboard('cmd5')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <img src="./img_ftp/ftp1.5.png" class="my-2 rounded shadow" alt="Akses FTP">
+
+        <h3 class="font-semibold">1.6 User Verifikasi</h3>
+        <p>Saat diminta login:</p>
+        <ul class="list-disc ml-6">
+          <li>Centang opsi <strong>Anonymous</strong></li>
+          <li>Email bebas (tidak berpengaruh)</li>
+        </ul>
+        <img src="./img_ftp/ftp1.6.png" class="my-2 rounded shadow" alt="Login Anonymous">
+
+        <h3 class="font-semibold">1.7 Tambahkan file ke FTP</h3>
+        <p>Jika berhasil masuk, coba upload file ke direktori FTP yang sudah dibuat.</p>
+        <img src="./img_ftp/ftp1.7.jpg" class="my-2 rounded shadow" alt="Upload FTP">
+
+        <h3 class="font-semibold">1.8 Cek file pada server</h3>
+        <div class="relative bg-gray-100 border rounded p-2 text-sm font-mono">
+<pre id="cmd6">cd /home/ftp/tempat_berbagi
+ls</pre>
+          <button onclick="copyToClipboard('cmd6')" class="absolute top-1 right-1 text-xs bg-blue-500 text-white px-2 py-1 rounded">Copy</button>
+        </div>
+        <p>Jika file muncul, maka konfigurasi FTP Server berhasil.</p>
+        <img src="./img_ftp/ftp1.8.png" class="my-2 rounded shadow" alt="Cek File FTP">
+      </div>
+    </section>
+  </main>
+</body>
+</html>
